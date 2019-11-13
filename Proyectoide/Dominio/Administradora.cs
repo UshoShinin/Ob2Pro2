@@ -21,6 +21,11 @@ namespace Dominio
             }
         }
 
+        public Usuario BuscarUsuario(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         private List<Producto> productos;
         private List<Cliente> clientes;
         private List<Compra> compras;
