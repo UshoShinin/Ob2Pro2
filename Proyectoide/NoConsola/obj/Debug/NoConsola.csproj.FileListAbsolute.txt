@@ -73,3 +73,5 @@ C:\Users\alumnoFI\Downloads\Ob2Pro2\Proyectoide\NoConsola\obj\Debug\NoConsola.cs
 C:\Users\alumnoFI\Downloads\Ob2Pro2\Proyectoide\NoConsola\obj\Debug\NoConsola.csproj.CopyComplete
 C:\Users\alumnoFI\Downloads\Ob2Pro2\Proyectoide\NoConsola\obj\Debug\NoConsola.dll
 C:\Users\alumnoFI\Downloads\Ob2Pro2\Proyectoide\NoConsola\obj\Debug\NoConsola.pdb
+C:\Users\alumnoFI\Downloads\Ob2Pro2\Proyectoide\NoConsola\bin\Dominio.dll
+C:\Users\alumnoFI\Downloads\Ob2Pro2\Proyectoide\NoConsola\bin\Dominio.pdb
