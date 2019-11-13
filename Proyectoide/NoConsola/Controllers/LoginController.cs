@@ -13,5 +13,10 @@ namespace NoConsola.Controllers
         {
             return View();
         }
+        public ActionResult PerformLogin(){
+            Usuario usu = 
+            
+            return View();
+        }
     }
 }
