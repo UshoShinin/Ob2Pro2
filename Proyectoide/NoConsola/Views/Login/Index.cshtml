@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 <h1>Poderoso Login</h1>
-<form action="/Login/PerfomLogin" method="post">
+<form action="/Login/PerformLogin" method="post">
     <table>
         <tr>
             <td><label for="username">Nombre de Usuario:</label></td>
@@ -15,7 +15,7 @@
         </tr>
     </table>
         <input type="submit" name="Login" value="Login">
-    <h2 class="MensajeError">ViewBag.ErrMsg</h2>
+    <h2 class="MensajeError">@ViewBag.ErrMsg</h2>
 </form>
 
 

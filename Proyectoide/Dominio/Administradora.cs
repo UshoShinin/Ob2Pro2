@@ -20,11 +20,7 @@ namespace Dominio
                 return instancia;
             }
         }
-
-        public Usuario BuscarUsuario(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         private List<Producto> productos;
         private List<Cliente> clientes;
