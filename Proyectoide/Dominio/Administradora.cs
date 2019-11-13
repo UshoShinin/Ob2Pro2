@@ -180,5 +180,17 @@ namespace Dominio
             compras.Add(cm);
         }
 
+        public Usuario BuscarUsuario(string username, string password)
+        {
+            foreach(Usuario usu in usuarios)
+            {
+                if(usu.Username.ToLower() == username.ToLower() && usu.Password == password)
+                {
+                    return usu;
+                }
+            }
+            return null;
+        }
+
     }
 }
