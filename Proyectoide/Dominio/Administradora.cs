@@ -24,12 +24,21 @@ namespace Dominio
         private List<Producto> productos;
         private List<Cliente> clientes;
         private List<Compra> compras;
+        private List<Usuario> usuarios;
+
+        
 
         #region Properties
         public List<Producto> Productos
         {
             get { return productos; }
             set { productos = value; }
+        }
+
+        public List<Usuario> Usuarios
+        {
+            get { return usuarios; }
+            set { usuarios = value; }
         }
 
         public List<Cliente> Clientes
@@ -50,7 +59,7 @@ namespace Dominio
             productos = new List<Producto>();
             clientes = new List<Cliente>();
             compras = new List<Compra>();
-
+            usuarios = new List<Usuario>();
             #region Productos  
             Producto p1 = new Producto("Leche", "Leche de vaca, entera y pasteurizada", false, Producto.EnumCategoria.FRESCOS, 29);
             Producto p2 = new Producto("Papas fritas", "1Kg de papas fritas congeladas", true, Producto.EnumCategoria.CONGELADOS, 150);
@@ -65,7 +74,7 @@ namespace Dominio
             productos.Add(p5);
             #endregion
 
-            #region Clientes
+            #region Clientes/Usuarios
             List<Compra> comprasRealizadas = new List<Compra>();
             DateTime fechaRegistro1 = new DateTime(2014, 8, 17);
             DateTime fechaRegistro2 = new DateTime(2016, 2, 22);
@@ -74,19 +83,41 @@ namespace Dominio
             DateTime fechaRegistro5 = new DateTime(2015, 11, 24);
             DateTime fechaRegistro6 = new DateTime(2013, 5, 30);
 
-            ClienteComun cc1 = new ClienteComun(comprasRealizadas, "Alejandro Britos", "AlejandroBritos1209", "AlejandroBritos@gmail.com", fechaRegistro1, Cliente.EnumProcedencia.INTERIOR, "Treinta y Tres 512", "AleBritos", 43245438, 98074334);
-            ClienteComun cc2 = new ClienteComun(comprasRealizadas, "Manuel Bertinat", "ManuelBertinat2901", "ManuelBertinat@gmail.com", fechaRegistro2, Cliente.EnumProcedencia.MONTEVIDEO, "Jose L. Terra 2372 apto 4", "Manu55", 50787620, 99346534);
-            ClienteComun cc3 = new ClienteComun(comprasRealizadas, "Guillermo Rodriguez", "GuillermoRodriguez1806", "GuillermoRodriguez@gmail.com", fechaRegistro3, Cliente.EnumProcedencia.INTERIOR, "18 de Julio 2204", "GuilleElMasCapito", 52432343, 96578757);
-            ClienteEmpresa ce1 = new ClienteEmpresa(comprasRealizadas, "ADNexus", "GenexusIsTrash", "NicholasJodon@ADNexus.com.uy", fechaRegistro4, Cliente.EnumProcedencia.MONTEVIDEO, "No tienen sede física lol", "ADNexus is Love", "ADNexus Es Mejor SRL", 213546823908, 0.05);
-            ClienteEmpresa ce2 = new ClienteEmpresa(comprasRealizadas, "MacroRough", "$250porUnaLicenciaEsUnPrecioJusto", "FacturaPuertas@MacroRough.com", fechaRegistro5, Cliente.EnumProcedencia.MONTEVIDEO, "El mundo lol", "WeHateLinux", "MacroRough Corporation", 222876233645, 0.10);
-            ClienteEmpresa ce3 = new ClienteEmpresa(comprasRealizadas, "Sinaprole", "Conaprole", "Leche@vaca.muu.uy", fechaRegistro6, Cliente.EnumProcedencia.INTERIOR, "Por todo Uruguay", "Via Sinaprole", "Cooperativa Sinaprole", 153324541981, 0.8);
+            Usuario u1 = new Usuario("ElAlejaBurritos", "BurritoAlbino", Usuario.EnumTipoUsuario.ADMINISTRADOR);
+            Usuario u2 = new Usuario("M4Ckak", "EstaNoEsUnaContraseñaGraciosa", Usuario.EnumTipoUsuario.ADMINISTRADOR);
+            Usuario u3 = new Usuario("Guille1806", "FuriKuri", Usuario.EnumTipoUsuario.CLIENTE);
+            Usuario u4 = new Usuario("ADNexus", "JodonJodon", Usuario.EnumTipoUsuario.CLIENTE);
+            Usuario u5 = new Usuario("MacroRough", "$250", Usuario.EnumTipoUsuario.CLIENTE);
+            Usuario u6 = new Usuario("Sinaprole", "NoVendemoLeche", Usuario.EnumTipoUsuario.CLIENTE);
+
+            ClienteComun cc1 = new ClienteComun(comprasRealizadas, "Alejandro Britos", "AlejandroBritos@gmail.com", fechaRegistro1, Cliente.EnumProcedencia.INTERIOR, "Treinta y Tres 512",u1, 43245438, 98074334);
+            ClienteComun cc2 = new ClienteComun(comprasRealizadas, "Manuel Bertinat", "ManuelBertinat@gmail.com", fechaRegistro2, Cliente.EnumProcedencia.MONTEVIDEO, "Jose L. Terra 2372 apto 4", u2, 50787620, 99346534);
+            ClienteComun cc3 = new ClienteComun(comprasRealizadas, "Guillermo Rodriguez",  "GuillermoRodriguez@gmail.com", fechaRegistro3, Cliente.EnumProcedencia.INTERIOR, "18 de Julio 2204",u3, 52432343, 96578757);
+            ClienteEmpresa ce1 = new ClienteEmpresa(comprasRealizadas, "ADNexus", "NicholasJodon@ADNexus.com.uy", fechaRegistro4, Cliente.EnumProcedencia.MONTEVIDEO, "No tienen sede física lol", u4, "ADNexus Es Mejor SRL", 213546823908, 0.05);
+            ClienteEmpresa ce2 = new ClienteEmpresa(comprasRealizadas, "MacroRough", "FacturaPuertas@MacroRough.com", fechaRegistro5, Cliente.EnumProcedencia.MONTEVIDEO, "El mundo lol", u5, "MacroRough Corporation", 222876233645, 0.10);
+            ClienteEmpresa ce3 = new ClienteEmpresa(comprasRealizadas, "Sinaprole", "Leche@vaca.muu.uy", fechaRegistro6, Cliente.EnumProcedencia.INTERIOR, "Por todo Uruguay", u6, "Cooperativa Sinaprole", 153324541981, 0.8);
+
+            u1.Cliente = cc1;
+            u2.Cliente = cc2;
+            u3.Cliente = cc3;
+            u4.Cliente = ce1;
+            u5.Cliente = ce2;
+            u6.Cliente = ce3;
 
             clientes.Add(cc1);
             clientes.Add(cc2);
             clientes.Add(cc3);
             clientes.Add(ce1);
             clientes.Add(ce2);
-            clientes.Add(ce3);  
+            clientes.Add(ce3);
+
+            usuarios.Add(u1);
+            usuarios.Add(u2);
+            usuarios.Add(u3);
+            usuarios.Add(u4);
+            usuarios.Add(u5);
+            usuarios.Add(u6);
+
             #endregion
 
             #region Compras

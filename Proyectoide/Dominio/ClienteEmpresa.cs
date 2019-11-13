@@ -11,9 +11,8 @@ namespace Dominio
         private string razonSocial;
         private long rut;
         private double descuento;
-
-        public ClienteEmpresa(List<Compra> compras, string nombre, string contraseña, string email, DateTime fecha, EnumProcedencia procedencia, string direccion, string nombreDeUsuario, string razonSocial, long rut, double descuento):
-        base(compras, nombre, contraseña, email, fecha, procedencia, direccion, nombreDeUsuario)
+        public ClienteEmpresa(List<Compra> compras, string nombre, string email, DateTime fecha, EnumProcedencia procedencia, string direccion, Usuario usu, string razonSocial, long rut, double descuento) :
+        base(compras, nombre, email, fecha, procedencia, direccion, usu)
         {
             this.razonSocial = razonSocial;
             this.rut = rut;

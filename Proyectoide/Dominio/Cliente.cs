@@ -9,7 +9,7 @@ namespace Dominio
     public abstract class Cliente
     {
         #region EnumDeclaration
-        public enum EnumProcedencia
+        public enum EnumProcedencia 
         {
             MONTEVIDEO = 1,
             INTERIOR
@@ -18,24 +18,22 @@ namespace Dominio
 
         private List<Compra> compras;
         private string nombre;
-        private string contraseña;
         private string email;
         private DateTime fecha;
         private EnumProcedencia procedencia;
         private string direccion;
-        private string nombreDeUsuario;
+        private Usuario usuario;
         protected static double descuentazo = 0.05;
 
-        protected Cliente(List<Compra> compras, string nombre, string contraseña, string email, DateTime fecha, EnumProcedencia procedencia, string direccion, string nombreDeUsuario)
+        protected Cliente(List<Compra> compras, string nombre, string email, DateTime fecha, EnumProcedencia procedencia, string direccion,Usuario usu)
         {
             this.compras = compras;
             this.nombre = nombre;
-            this.contraseña = contraseña;
             this.email = email;
             this.fecha = fecha;
             this.procedencia = procedencia;
             this.direccion = direccion;
-            this.nombreDeUsuario = nombreDeUsuario;
+            this.usuario = usu;
         }
 
         #region Properties
@@ -49,11 +47,6 @@ namespace Dominio
         {
             get { return nombre; }
             set { nombre = value; }
-        }
-        public string Contraseña
-        {
-            get { return contraseña; }
-            set { contraseña = value; }
         }
         public string Email
         {
@@ -74,10 +67,10 @@ namespace Dominio
             get { return direccion; }
             set { direccion = value; }
         }
-        public string NombreDeUsuario
+        public Usuario Usuario
         {
-            get { return nombreDeUsuario; }
-            set { nombreDeUsuario = value; }
+            get { return usuario; }
+            set { usuario = value; }
         }
         #endregion
 

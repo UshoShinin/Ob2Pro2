@@ -12,8 +12,8 @@ namespace Dominio
         private int cedula;
         private int celular;        
 
-        public ClienteComun(List<Compra> compras, string nombre, string contraseña, string email, DateTime fecha, EnumProcedencia procedencia, string direccion, string nombreDeUsuario, int cedula, int celular) :
-        base(compras, nombre, contraseña, email, fecha, procedencia, direccion, nombreDeUsuario)
+        public ClienteComun(List<Compra> compras, string nombre, string email, DateTime fecha, EnumProcedencia procedencia, string direccion, Usuario usu, int cedula, int celular) :
+        base(compras, nombre, email, fecha, procedencia, direccion, usu)
         {
             this.cedula = cedula;
             this.celular = celular;
