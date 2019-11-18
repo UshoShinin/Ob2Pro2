@@ -24,7 +24,14 @@ namespace NoConsola.Controllers
             }
             else {
                 Session["usuarioLogueado"] = usu;
-                return RedirectToAction("Index", "Home");
+                if (usu.Tipo == Usuario.EnumTipoUsuario.ADMINISTRADOR)
+                {
+                    return RedirectToAction("Index", "Producto");
+                }
+                else {
+                    return RedirectToAction("Index", "Home");
+                }
+                
             }
 
         }
