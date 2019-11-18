@@ -1,7 +1,53 @@
-﻿
+﻿@using Dominio;
 @{
     ViewBag.Title = "ListarCatalogo";
 }
 
-<h2>ListarCatalogo jaja ajajaja salu3</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Exclusivo</th>
+            <th>Categoria</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Producto p in Administradora.Instancia.Productos)
+        {
+        <tr>
+            <td>@p.Nombre</td>
+            <td>@p.Descripcion</td>
+            @if (p.Exclusivo)
+            {
+                <td>SI</td>
+            }
+            else
+            {
+                <td>No</td>
+            }
+            @switch ((int)p.Categoria)
+            {
+                case 1:
+                    <td>Frescos</td>
+                    break;
+                case 2:
+                    <td>Congelados</td>
+                    break;
+                case 3:
+                    <td>Hogar</td>
+                    break;
+                case 4:
+                    <td>Textiles</td>
+                    break;
+                case 5:
+                    <td>Tecnología</td>
+                    break;
+            }
+            <td>@p.Precio</td>
+        </tr>
+        }
+    </tbody>
+</table>
 

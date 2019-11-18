@@ -28,3 +28,9 @@ C:\Users\alumnoFI\Downloads\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.csproj
 C:\Users\alumnoFI\Downloads\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\alumnoFI\Downloads\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.dll
 C:\Users\alumnoFI\Downloads\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.pdb
+C:\Users\alumnoFI\Documents\Ob2Pro2\Proyectoide\Dominio\bin\Debug\Dominio.dll
+C:\Users\alumnoFI\Documents\Ob2Pro2\Proyectoide\Dominio\bin\Debug\Dominio.pdb
+C:\Users\alumnoFI\Documents\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.csprojAssemblyReference.cache
+C:\Users\alumnoFI\Documents\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\alumnoFI\Documents\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.dll
+C:\Users\alumnoFI\Documents\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.pdb

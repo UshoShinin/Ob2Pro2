@@ -20,3 +20,24 @@ textarea {
 .MensajeError {
     color:darkred;
 }
+table{
+    margin-top:40px;
+}
+table thead tr {
+    width: 100%;
+}
+
+table thead tr th{
+    width: 20%;
+    text-align: center;
+}
+
+    table tbody tr td {
+        text-align: center;
+    }
+
+table tbody tr:nth-child(odd) {
+    background-color: #e5e5e5;
+}
+
+
