@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Dominio;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,10 +18,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    @if (Session["usuarioLogueado"] != null && ((Usuario)Session["usuarioLogueado"]).Tipo == Usuario.EnumTipoUsuario.ADMINISTRADOR)
+                    {
+                        @Html.ActionLink("Gestión de Productos", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Gestión de Clientes", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Compras entre 2 fechas", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    }
+                    else if (Session["usuarioLogueado"] != null && ((Usuario)Session["usuarioLogueado"]).Tipo == Usuario.EnumTipoUsuario.CLIENTE)
+                    {
+                        @Html.ActionLink("Comprar Productos", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Ultimos Productos", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Artículo más comprado", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    }
                 </ul>
             </div>
         </div>
