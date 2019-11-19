@@ -1,7 +1,138 @@
-﻿
+﻿@using Dominio;
 @{
     ViewBag.Title = "Index";
 }
+@model Producto
 
-<h2>Llegaste</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Exclusivo</th>
+            <th>Categoria</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Producto p in Administradora.Instancia.Productos)
+        {
+        <tr>
+            <td>@p.Nombre</td>
+            <td>@p.Descripcion</td>
+            @if (p.Exclusivo)
+            {
+                <td>SI</td>
+            }
+            else
+            {
+                <td>No</td>
+            }
+            @switch ((int)p.Categoria)
+            {
+                case 1:
+                    <td>Frescos</td>
+                    break;
+                case 2:
+                    <td>Congelados</td>
+                    break;
+                case 3:
+                    <td>Hogar</td>
+                    break;
+                case 4:
+                    <td>Textiles</td>
+                    break;
+                case 5:
+                    <td>Tecnología</td>
+                    break;
+            }
+            <td>@p.Precio</td>
+            <td>
+                <form action="/Producto/Modificar" method="post">
+                    <input type="hidden" name="id" value="@p.ID">
+                    <input type="submit" value="Modificar">
+                </form>
+            </td>
+            <td>
+                <form action="/Producto/Eliminar" method="post">
+                    <input type="hidden" name="id" value="@p.ID">
+                    <input type="submit" value="Eliminar">
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@if (Model == null) {
+<form action="/Producto/Agregar" method="post" class="gesForm">
+    <div class="form-group">
+        <lable for="Nombre">Nombre:</lable>
+        <input type="text" name="Nombre" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <lable for="Desc">Descripcion:</lable>
+        <input type="text" name="Desc" class="form-control"required>
+    </div>
+    <div class="form-group">
+        <lable for="Exclusivo">Exclusivo</lable>
+        <input type="checkbox" name="Exclusivo" value="S">
+    </div>
+    <div class="form-group">
+        <lable for="Categoria">Categoría </lable>
+        <select name="Cat" class="form-control">
+            @for (int i = 0; i < Administradora.Instancia.categorias.Length; i++)
+            {
+                <option value="@(i+1)">@Administradora.Instancia.categorias[i]</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <lable for="Precio">Precio:</lable>
+        <input type="text" name="Precio" class="form-control" required>
+    </div>
+    <input type="submit" value="Agregar">
+</form>
+
+}
+else {
+<form action="/Producto/RealizarModificacion" method="post" class="gesForm">
+    <div class="form-group">
+        <lable for="Nombre">Nombre:</lable>
+        <input type="text" name="Nombre" class="form-control" value="@Model.Nombre">
+    </div>
+    <div class="form-group">
+        <lable for="Desc">Descripcion:</lable>
+        <input type="text" name="Desc" class="form-control" value="@Model.Descripcion">
+    </div>
+    <div class="form-group">
+        <lable for="Exclusivo">Exclusivo</lable>
+        @if (Model.Exclusivo)
+        {
+            <input type="checkbox" name="Exclusivo" value="Exclusividad" checked>
+        }
+        else
+        {
+            <input type="checkbox" name="Exclusivo" value="Exclusividad">
+        }
+    </div>
+    <div class="form-group">
+        <lable for="Categoria">Categoría </lable>
+        <select class="form-control">
+            @for (int i = 1; i <= Administradora.Instancia.categorias.Length; i++)
+            {
+                if ((int)Model.Categoria == i)
+                {
+                    <option value="@(i)" selected>@Administradora.Instancia.categorias[i-1]</option>
+                }
+                else {
+                    <option value="@(i)">@Administradora.Instancia.categorias[i-1]</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <lable for="Precio">Precio:</lable>
+        <input type="text" name="Precio" class="form-control" value="@Model.Precio">
+    </div>
+</form>}
 

@@ -20,13 +20,13 @@ namespace Dominio
                 return instancia;
             }
         }
-        
+
 
         private List<Producto> productos;
         private List<Cliente> clientes;
         private List<Compra> compras;
         private List<Usuario> usuarios;
-
+        public string[] categorias = new string[5] { "Frescos", "Congelados","Hogar","Textiles","Tecnología"};
         
 
         #region Properties
@@ -79,7 +79,7 @@ namespace Dominio
             List<Compra> comprasRealizadas = new List<Compra>();
             DateTime fechaRegistro1 = new DateTime(2014, 8, 17);
             DateTime fechaRegistro2 = new DateTime(2016, 2, 22);
-            DateTime fechaRegistro3 = new DateTime(2018  b, 12, 27);
+            DateTime fechaRegistro3 = new DateTime(2018, 12, 27);
             DateTime fechaRegistro4 = new DateTime(2011, 3, 12);
             DateTime fechaRegistro5 = new DateTime(2015, 11, 24);
             DateTime fechaRegistro6 = new DateTime(2013, 5, 30);
