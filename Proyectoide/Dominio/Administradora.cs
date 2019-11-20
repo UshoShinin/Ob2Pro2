@@ -215,5 +215,28 @@ namespace Dominio
                 }
             }
         }
+
+        public ClienteComun BuscarClienteComun(string Email)
+        {
+            foreach(Cliente C in Administradora.Instancia.Clientes)
+            {
+                if(C.Email == Email) {
+                    return (ClienteComun)C;
+                }
+            }
+            return null;
+        }
+
+        public ClienteEmpresa BuscarClienteEmpresa(string Email)
+        {
+            foreach (Cliente C in Administradora.Instancia.Clientes)
+            {
+                if (C.Email == Email)
+                {
+                    return (ClienteEmpresa)C;
+                }
+            }
+            return null;
+        }
     }
 }
