@@ -116,16 +116,16 @@ else
                 <lable for="Exclusivo">Exclusivo</lable>
                 @if (Model.Exclusivo)
                 {
-                    <input type="checkbox" name="Exclusivo" value="Exclusividad" checked>
+                    <input type="checkbox" name="Exclusivo" value="S" checked>
                 }
                 else
                 {
-                    <input type="checkbox" name="Exclusivo" value="Exclusividad">
+                    <input type="checkbox" name="Exclusivo" value="S">
                 }
             </div>
             <div class="form-group">
                 <lable for="Categoria">Categoría </lable>
-                <select class="form-control">
+                <select name="Cat" class="form-control">
                     @for (int i = 1; i <= Administradora.Instancia.categorias.Length; i++)
                     {
                         if ((int)Model.Categoria == i)
