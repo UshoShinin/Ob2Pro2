@@ -20,6 +20,7 @@ namespace NoConsola.Controllers
 
         public ActionResult Agregar(string Nombre, string Desc, string Exclusivo, int Cat, double? Precio)
         {
+            bool Exclusividad;
             if (Session["usuarioLogueado"] == null)
             {
                 return RedirectToAction("Index", "Login");
@@ -30,16 +31,15 @@ namespace NoConsola.Controllers
 
             }
             else {
-                Producto p;
+                
                 if (Exclusivo == "S")
                 {
-                    p = new Producto(Nombre, Desc, true, (Producto.EnumCategoria)Cat, Precio.Value);
+                    Exclusividad = true;
                 }
                 else {
-                    p = new Producto(Nombre, Desc, false, (Producto.EnumCategoria)Cat, Precio.Value);
+                    Exclusividad = false;
                 }
-                
-                Administradora.Instancia.AgregarProducto(p);
+                Administradora.Instancia.AgregarProducto(new Producto(Nombre, Desc, Exclusividad, (Producto.EnumCategoria)Cat, Precio.Value));
             }
             
             return View("Index");
@@ -55,6 +55,40 @@ namespace NoConsola.Controllers
             return View("Index", p);
         }
 
+        public ActionResult RealizarModificacion(string Nombre, string Desc, string Exclusivo, int Cat, double? Precio)
+        {
+            bool Exclusividad;
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (Precio == null)
+            {
+                ViewBag.ErrMsg = "El precio debe ser numérico";
+                return View("Index");
+
+            }
+            else
+            {
+
+                if (Exclusivo == "S")
+                {
+                    Exclusividad = true;
+                }
+                else
+                {
+                    Exclusividad = false;
+                }
+                Producto p = Administradora.Instancia.BuscarProducto(3);
+                p.Nombre = Nombre;
+                p.Descripcion = Desc;
+                p.Exclusivo = Exclusividad;
+                p.Categoria = (Producto.EnumCategoria)Cat;
+                p.Precio = Precio.Value;
+            }
+
+            return View("Index");
+        }
 
     }
 }
