@@ -90,5 +90,14 @@ namespace NoConsola.Controllers
             return View("Index");
         }
 
+        public ActionResult Eliminar(int id)
+        {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            Administradora.Instancia.EliminarProducto(id);
+            return View("Index");
+        }
     }
 }

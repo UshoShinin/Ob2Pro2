@@ -204,5 +204,15 @@ namespace Dominio
             }
             return null;
         }
+
+        public void EliminarProducto(int id) {
+            for (int i = 0; i <= productos.Count; i++) {
+                Producto P = productos[i];
+                if (P.ID == id) {
+                    productos.RemoveAt(i);
+                    break;
+                }
+            }
+        }
     }
 }
