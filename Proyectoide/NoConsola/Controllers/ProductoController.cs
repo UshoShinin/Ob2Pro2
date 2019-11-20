@@ -55,7 +55,7 @@ namespace NoConsola.Controllers
             return View("Index", p);
         }
 
-        public ActionResult RealizarModificacion(string Nombre, string Desc, string Exclusivo, int Cat, double? Precio)
+        public ActionResult RealizarModificacion(int id, string Nombre, string Desc, string Exclusivo, int Cat, double? Precio)
         {
             bool Exclusividad;
             if (Session["usuarioLogueado"] == null)
@@ -79,7 +79,7 @@ namespace NoConsola.Controllers
                 {
                     Exclusividad = false;
                 }
-                Producto p = Administradora.Instancia.BuscarProducto(3);
+                Producto p = Administradora.Instancia.BuscarProducto(id);
                 p.Nombre = Nombre;
                 p.Descripcion = Desc;
                 p.Exclusivo = Exclusividad;
