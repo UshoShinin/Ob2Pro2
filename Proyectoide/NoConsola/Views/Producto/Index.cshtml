@@ -4,7 +4,7 @@
 }
 @model Producto
 
-<table>
+<table id="Productos">
     <thead>
         <tr>
             <th>Nombre</th>
@@ -81,7 +81,7 @@
                 <input type="checkbox" name="Exclusivo" value="S">
             </div>
             <div class="form-group">
-                <lable for="Categoria">Categoría </lable>
+                <lable for="Cat">Categoría </lable>
                 <select name="Cat" class="form-control">
                     @for (int i = 0; i < Administradora.Instancia.categorias.Length; i++)
                     {

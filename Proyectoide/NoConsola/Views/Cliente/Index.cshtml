@@ -1,0 +1,160 @@
+﻿@using Dominio;
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Cliente Común</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Fecha de reguistro</th>
+            <th>Procedencia</th>
+            <th>Direccion</th>
+            <th>Cédula</th>
+            <th>Celular</th>
+            <th>Nombre de ususario</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Cliente C in Administradora.Instancia.Clientes)
+        {
+            if (C is ClienteComun)
+            {
+                ClienteComun CC = (ClienteComun)C;
+                <tr>
+                    <td>@CC.Nombre</td>
+                    <td>@CC.Email</td>
+                    <td>@CC.Fecha.ToShortDateString()</td>
+                    @switch ((int)CC.Procedencia)
+                    {
+                        case 1:
+                            <td>Montevideo</td>
+                            break;
+                        case 2:
+                            <td>Interior</td>
+                            break;
+                    }
+                    <td>@CC.Direccion</td>
+                    <td>@CC.Cedula</td>
+                    <td>@CC.Celular</td>
+                    <td>@CC.Usuario.Username</td>
+                    <td>
+                        <form action="/Cliente/ModificarClienteComun" method="post">
+                            <input type="hidden" value="@CC.Email">
+                            <input type="submit" name="Modificar" value="Modificar">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/Cliente/EliminarClienteComun" method="post">
+                            <input type="hidden" value="@CC.Email">
+                            <input type="submit" name="Eliminar" value="Eliminar">
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h2>Cliente Empresa</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Fecha de reguistro</th>
+            <th>Procedencia</th>
+            <th>Direccion</th>
+            <th>Razon Social</th>
+            <th>Rut</th>
+            <th>Nombre de ususario</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Cliente C in Administradora.Instancia.Clientes)
+        {
+            if (C is ClienteEmpresa)
+            {
+                ClienteEmpresa CC = (ClienteEmpresa)C;
+                <tr>
+                    <td>@CC.Nombre</td>
+                    <td>@CC.Email</td>
+                    <td>@CC.Fecha.ToShortDateString()</td>
+                    @switch ((int)CC.Procedencia)
+                    {
+                        case 1:
+                            <td>Montevideo</td>
+                            break;
+                        case 2:
+                            <td>Interior</td>
+                            break;
+                    }
+                    <td>@CC.Direccion</td>
+                    <td>@CC.RazonSocial</td>
+                    <td>@CC.Rut</td>
+                    <td>@CC.Usuario.Username</td>
+                    <td>
+                        <form action="/Cliente/ModificarClienteEmpresa" method="post">
+                            <input type="hidden" value="@CC.Email">
+                            <input type="submit" name="Modificar" value="Modificar">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/Cliente/EliminarClienteEmpresa" method="post">
+                            <input type="hidden" value="@CC.Email">
+                            <input type="submit" name="Eliminar" value="Eliminar">
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+<form action="/Cliente/AgregarComun" method="post" class="gesForm">
+    <fieldset>
+        <legend>Agregar</legend>
+        <div class="form-group">
+            <lable for="Nombre">Nombre:</lable>
+            <input type="text" name="Nombre" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <lable for="Exclusivo">Fecha:</lable>
+            <input type="date" name="Fecha">
+        </div>
+        <div class="form-group">
+            <lable for="Procedencia">Procedencia: </lable>
+            <select name="Procedencia" class="form-control">
+                @for (int i = 0; i < Administradora.Instancia.procedencias.Length; i++)
+                {
+                    <option value="@(i+1)">@Administradora.Instancia.procedencias[i]</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <lable for="Direccion">Dirección:</lable>
+            <input type="text" name="Direccion" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <lable for="Cedula">Cédula:</lable>
+            <input type="text" name="Cedula" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <lable for="Celular">Celular:</lable>
+            <input type="text" name="Celular" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <lable for="username">Nombre de Usuario:</lable>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <lable for="password">Contraseña:</lable>
+            <input type="text" name="password" class="form-control" required>
+        </div>
+        <input type="submit" value="Agregar">
+    </fieldset>
+</form>
+<h2 class="MensajeError">@ViewBag.ErrMsg</h2>
+

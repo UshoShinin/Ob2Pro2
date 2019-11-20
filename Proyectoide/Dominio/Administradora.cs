@@ -26,8 +26,9 @@ namespace Dominio
         private List<Cliente> clientes;
         private List<Compra> compras;
         private List<Usuario> usuarios;
-        public string[] categorias = new string[5] { "Frescos", "Congelados","Hogar","Textiles","Tecnología"};
-        
+        public string[] categorias = new string[] { "Frescos", "Congelados","Hogar","Textiles","Tecnología"};
+        public string[] procedencias = new string[] { "Montevideo", "Interior"};
+
 
         #region Properties
         public List<Producto> Productos
