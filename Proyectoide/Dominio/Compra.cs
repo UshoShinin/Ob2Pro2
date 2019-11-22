@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Compra
+    public class Compra:IComparable<Compra>
     {
 
         #region EnumDeclaration
@@ -114,7 +114,16 @@ namespace Dominio
         public override string ToString()
         {
             return string.Format("{0}, fecha: {1} - Total productos: {2}", Cliente.Nombre, fecha.ToShortDateString(), CantidadProductos());
-        } 
+        }
+
+        public int CompareTo(Compra C)
+        {
+            return this.fecha.CompareTo(C.fecha);
+        }
+
+
+
+
         #endregion
     }
 }
