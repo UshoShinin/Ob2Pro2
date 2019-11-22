@@ -48,5 +48,14 @@ table tbody tr:nth-child(odd) {
 .gesForm {
     margin-top: 30px;
 }
+#Derecha, #Izquierda {
+    width:50%;
+}
+#Derecha {
+    float:right;
+}
+#Izquierda {
+    float:left;
+}
 
 

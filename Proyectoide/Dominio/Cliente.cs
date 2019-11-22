@@ -56,6 +56,7 @@ namespace Dominio
         public DateTime Fecha
         {
             get { return fecha; }
+            set { fecha = value; }
         }
         public EnumProcedencia Procedencia
         {

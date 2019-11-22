@@ -47,7 +47,7 @@
                         </form>
                     </td>
                     <td>
-                        <form action="/Cliente/EliminarClienteComun" method="post">
+                        <form action="/Cliente/Eliminar" method="post">
                             <input type="hidden" name="Email" value="@CC.Email">
                             <input type="submit" name="Eliminar" value="Eliminar">
                         </form>
@@ -76,12 +76,12 @@
         {
             if (C is ClienteEmpresa)
             {
-                ClienteEmpresa CC = (ClienteEmpresa)C;
+                ClienteEmpresa CE = (ClienteEmpresa)C;
                 <tr>
-                    <td>@CC.Nombre</td>
-                    <td>@CC.Email</td>
-                    <td>@CC.Fecha.ToShortDateString()</td>
-                    @switch ((int)CC.Procedencia)
+                    <td>@CE.Nombre</td>
+                    <td>@CE.Email</td>
+                    <td>@CE.Fecha.ToShortDateString()</td>
+                    @switch ((int)CE.Procedencia)
                     {
                         case 1:
                             <td>Montevideo</td>
@@ -90,19 +90,19 @@
                             <td>Interior</td>
                             break;
                     }
-                    <td>@CC.Direccion</td>
-                    <td>@CC.RazonSocial</td>
-                    <td>@CC.Rut</td>
-                    <td>@CC.Usuario.Username</td>
+                    <td>@CE.Direccion</td>
+                    <td>@CE.RazonSocial</td>
+                    <td>@CE.Rut</td>
+                    <td>@CE.Usuario.Username</td>
                     <td>
                         <form action="/Cliente/ModificarClienteEmpresa" method="post">
-                            <input type="hidden" name="Email" value="@CC.Email">
+                            <input type="hidden" name="Email" value="@CE.Email">
                             <input type="submit" name="Modificar" value="Modificar">
                         </form>
                     </td>
                     <td>
-                        <form action="/Cliente/EliminarClienteEmpresa" method="post">
-                            <input type="hidden" name="Email" value="@CC.Email">
+                        <form action="/Cliente/Eliminar" method="post">
+                            <input type="hidden" name="Email" value="@CE.Email">
                             <input type="submit" name="Eliminar" value="Eliminar">
                         </form>
                     </td>
@@ -113,6 +113,7 @@
 </table>
 @if (Model == null)
 {
+<div id="Izquierda">
     <form action="/Cliente/AgregarComun" method="post" class="gesForm">
         <fieldset>
             <legend>Agregar Cliente Comun</legend>
@@ -126,7 +127,7 @@
             </div>
             <div class="form-group">
                 <lable for="Fecha">Fecha:</lable>
-                <input type="date" class="form-control" name="Fecha" required max="@(DateTime.Now.Year)-@(DateTime.Now.Month)-@(DateTime.Now.Day)">
+                <input type="date" class="form-control" name="Fecha" required max="@DateTime.Now.ToString("yyyy-MM-dd")">
             </div>
             <div class="form-group">
                 <lable for="Procedencia">Procedencia: </lable>
@@ -161,12 +162,181 @@
         </fieldset>
     </form>
     <h2 class="MensajeError">@ViewBag.ErrMsg</h2>
+</div>
+
+    <div id="Derecha">
+        <form action="/Cliente/AgregarEmpresa" method="post" class="gesForm">
+            <fieldset>
+                <legend>Agregar Cliente Empresa</legend>
+                <div class="form-group">
+                    <lable for="Nombre">Nombre:</lable>
+                    <input type="text" name="Nombre" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <lable for="Email">Email:</lable>
+                    <input type="email" name="Email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <lable for="Fecha">Fecha:</lable>
+                    <input type="date" class="form-control" name="Fecha" required max="@DateTime.Now.ToString("yyyy-MM-dd")">
+                </div>
+                <div class="form-group">
+                    <lable for="Procedencia">Procedencia: </lable>
+                    <select name="Procedencia" class="form-control">
+                        @for (int i = 0; i < Administradora.Instancia.procedencias.Length; i++)
+                        {
+                            <option value="@(i+1)">@Administradora.Instancia.procedencias[i]</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <lable for="Direccion">Dirección:</lable>
+                    <input type="text" name="Direccion" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <lable for="razonSocial">Razon Social:</lable>
+                    <input type="text" name="razonSocial" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <lable for="rut">Rut:</lable>
+                    <input type="text" name="rut" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <lable for="descuento">Descuento:</lable>
+                    <input type="text" name="descuento" class="form-control" required >
+                </div>
+
+                <div class="form-group">
+                    <lable for="username">Nombre de Usuario:</lable>
+                    <input type="text" name="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <lable for="password">Contraseña:</lable>
+                    <input type="text" name="password" class="form-control" required>
+                </div>
+                <input type="submit" value="Agregar">
+            </fieldset>
+        </form>
+        <h2 class="MensajeError">@ViewBag.ErrMsg</h2>
+    </div>   
 }
 else if (Model is ClienteComun)
 {
-    <h2 class="MensajeError">ADioooooo</h2>
+    ClienteComun CC = (ClienteComun)Model;
+    <form action="/Cliente/RealizarModificacionComun" method="post" class="gesForm">
+        <fieldset>
+            <legend>Modificar Cliente Comun</legend>
+            <div class="form-group">
+                <lable for="Nombre">Nombre:</lable>
+                <input type="text" name="Nombre" class="form-control" required value="@CC.Nombre">
+            </div>
+            <div class="form-group">
+                <lable for="Fecha">Fecha:</lable>
+                <input type="date" class="form-control" name="Fecha" required max="@DateTime.Now.ToString("yyyy-MM-dd")" value="@CC.Fecha.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="form-group">
+                <lable for="Procedencia">Procedencia: </lable>
+                <select name="Procedencia" class="form-control">
+                    @for (int i = 0; i < Administradora.Instancia.procedencias.Length; i++)
+                    {
+                        if ((Cliente.EnumProcedencia)(i + 1) == CC.Procedencia)
+                        {
+                            <option value="@(i+1)" selected>@Administradora.Instancia.procedencias[i]</option>
+                        }
+                        else
+                        {
+                            <option value="@(i+1)">@Administradora.Instancia.procedencias[i]</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <lable for="Direccion">Dirección:</lable>
+                <input type="text" name="Direccion" class="form-control" required value="@CC.Direccion">
+            </div>
+            <div class="form-group">
+                <lable for="Cedula">Cédula:</lable>
+                <input type="text" name="Cedula" class="form-control" required value="@CC.Cedula">
+            </div>
+            <div class="form-group">
+                <lable for="Celular">Celular:</lable>
+                <input type="text" name="Celular" class="form-control" required value="@CC.Celular">
+            </div>
+            <div class="form-group">
+                <lable for="username">Nombre de Usuario:</lable>
+                <input type="text" name="username" class="form-control" required value="@CC.Usuario.Username">
+            </div>
+            <div class="form-group">
+                <lable for="password">Contraseña:</lable>
+                <input type="text" name="password" class="form-control" required value="@CC.Usuario.Password">
+            </div>
+            <input type="hidden" name="Email" value="@CC.Email">
+            <input type="submit" value="Modificar">
+        </fieldset>
+    </form>
+    <h2 class="MensajeError">@ViewBag.ErrMsg</h2>
 }
 else
 {
-    <h2 class="MensajeError">Holaaaaaa</h2>
+    ClienteEmpresa CM = (ClienteEmpresa)Model;
+    <form action="/Cliente/RealizarModificacionEmpresa" method="post" class="gesForm">
+        <fieldset>
+            <legend>Modificar Cliente Empresa</legend>
+            <div class="form-group">
+                <lable for="Nombre">Nombre:</lable>
+                <input type="text" name="Nombre" class="form-control" required value="@CM.Nombre">
+            </div>
+            <div class="form-group">
+                <lable for="Fecha">Fecha:</lable>
+                <input type="date" class="form-control" name="Fecha" required max="@DateTime.Now.ToString("yyyy-MM-dd")" value="@CM.Fecha.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="form-group">
+                <lable for="Procedencia">Procedencia: </lable>
+                <select name="Procedencia" class="form-control">
+                    @for (int i = 0; i < Administradora.Instancia.procedencias.Length; i++)
+                    {
+                        if ((Cliente.EnumProcedencia)(i + 1) == CM.Procedencia)
+                        {
+                            <option value="@(i+1)" selected>@Administradora.Instancia.procedencias[i]</option>
+                        }
+                        else
+                        {
+                            <option value="@(i+1)">@Administradora.Instancia.procedencias[i]</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <lable for="Direccion">Dirección:</lable>
+                <input type="text" name="Direccion" class="form-control" required value="@CM.Direccion">
+            </div>
+
+            <div class="form-group">
+                <lable for="razonSocial">Razon Social:</lable>
+                <input type="text" name="razonSocial" class="form-control" required value="@CM.RazonSocial">
+            </div>
+            <div class="form-group">
+                <lable for="rut">Rut:</lable>
+                <input type="text" name="rut" class="form-control" required value="@CM.Rut">
+            </div>
+
+            <div class="form-group">
+                <lable for="descuento">Descuento:</lable>
+                <input type="text" name="descuento" class="form-control" required value="@CM.Descuento">
+            </div>
+
+            <div class="form-group">
+                <lable for="username">Nombre de Usuario:</lable>
+                <input type="text" name="username" class="form-control" required value="@CM.Usuario.Username">
+            </div>
+            <div class="form-group">
+                <lable for="password">Contraseña:</lable>
+                <input type="text" name="password" class="form-control" required value="@CM.Usuario.Password">
+            </div>
+            <input type="hidden" name="Email" value="@CM.Email">
+            <input type="submit" value="Modificar">
+        </fieldset>
+    </form>
+    <h2 class="MensajeError">@ViewBag.ErrMsg</h2>
 }

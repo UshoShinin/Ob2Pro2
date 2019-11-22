@@ -206,21 +206,12 @@ namespace Dominio
             return null;
         }
 
-        public void EliminarProducto(int id) {
-            for (int i = 0; i <= productos.Count; i++) {
-                Producto P = productos[i];
-                if (P.ID == id) {
-                    productos.RemoveAt(i);
-                    break;
-                }
-            }
-        }
-
         public ClienteComun BuscarClienteComun(string Email)
         {
-            foreach(Cliente C in Administradora.Instancia.Clientes)
+            foreach (Cliente C in Administradora.Instancia.Clientes)
             {
-                if(C.Email == Email) {
+                if (C.Email == Email)
+                {
                     return (ClienteComun)C;
                 }
             }
@@ -238,5 +229,30 @@ namespace Dominio
             }
             return null;
         }
+
+        public void EliminarProducto(int id) {
+            for (int i = 0; i <= productos.Count; i++) {
+                Producto P = productos[i];
+                if (P.ID == id) {
+                    productos.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
+        public void EliminarCliente(string Email)
+        {
+            for (int i = 0; i <= clientes.Count; i++)
+            {
+                Cliente C = clientes[i];
+                if (C.Email == Email)
+                {
+                    clientes.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
+
     }
 }
