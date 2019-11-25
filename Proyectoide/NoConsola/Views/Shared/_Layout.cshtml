@@ -24,15 +24,21 @@
                 <ul class="nav navbar-nav">
                     @if (Session["usuarioLogueado"] != null && ((Usuario)Session["usuarioLogueado"]).Tipo == Usuario.EnumTipoUsuario.ADMINISTRADOR)
                     {
-                        @Html.ActionLink("Gestión de Productos", "Index", "Producto", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Gestión de Clientes", "Index", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Compras entre 2 fechas", "Index", "Compra", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Gestión de Clientes", "Index", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Gestión de Productos", "Index", "Producto", new { area = "" }, new { @class = "navbar-brand" })
+
+
                     }
                     else if (Session["usuarioLogueado"] != null && ((Usuario)Session["usuarioLogueado"]).Tipo == Usuario.EnumTipoUsuario.CLIENTE)
                     {
-                        @Html.ActionLink("Comprar Productos", "ComprarProductos", "Compra", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Ultimos Productos", "UltimosProductosComprados", "Producto", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Artículo más comprado", "MasComprado", "Producto", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Ultimos Productos", "UltimosProductosComprados", "Producto", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Comprar Productos", "ComprarProductos", "Compra", new { area = "" }, new { @class = "navbar-brand" })
+                    }
+                    @if (Session["usuarioLogueado"] != null)
+                    {
+                        @Html.ActionLink("LogOut", "LogOut", "Login", new { area = "" }, new { @class = "navbar-brand" })
                     }
                 </ul>
             </div>
