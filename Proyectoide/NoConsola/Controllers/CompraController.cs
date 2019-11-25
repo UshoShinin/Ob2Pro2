@@ -25,6 +25,10 @@ namespace NoConsola.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
+            if (Session["carrito"] == null)
+            {
+                Session["carrito"] = new List<CantidadProducto>();
+            }            
             return View();
         }
 
