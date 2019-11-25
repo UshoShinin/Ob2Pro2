@@ -40,3 +40,9 @@ C:\Users\Usho\Documents\ORT\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.csproj
 C:\Users\Usho\Documents\ORT\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\Usho\Documents\ORT\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.dll
 C:\Users\Usho\Documents\ORT\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.pdb
+C:\Users\Manuel\Documents\GitKraken Repos\Ob2Pro2\Proyectoide\Dominio\bin\Debug\Dominio.dll
+C:\Users\Manuel\Documents\GitKraken Repos\Ob2Pro2\Proyectoide\Dominio\bin\Debug\Dominio.pdb
+C:\Users\Manuel\Documents\GitKraken Repos\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.csprojAssemblyReference.cache
+C:\Users\Manuel\Documents\GitKraken Repos\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\Manuel\Documents\GitKraken Repos\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.dll
+C:\Users\Manuel\Documents\GitKraken Repos\Ob2Pro2\Proyectoide\Dominio\obj\Debug\Dominio.pdb

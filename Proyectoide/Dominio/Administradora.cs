@@ -106,13 +106,6 @@ namespace Dominio
             u5.Cliente = ce2;
             u6.Cliente = ce3;
 
-            clientes.Add(cc1);
-            clientes.Add(cc2);
-            clientes.Add(cc3);
-            clientes.Add(ce1);
-            clientes.Add(ce2);
-            clientes.Add(ce3);
-
             usuarios.Add(u1);
             usuarios.Add(u2);
             usuarios.Add(u3);
@@ -150,19 +143,26 @@ namespace Dominio
             Compra cm5 = new Compra(listaP5, cc3, fechaCompra5, Compra.EnumFormaPago.EFECTIVO, Compra.EnumTipoEntrega.RETIROLOCAL);
             Compra cm6 = new Compra(listaP6, ce1, fechaCompra6, Compra.EnumFormaPago.TARJETA, Compra.EnumTipoEntrega.DOMICILIO);
 
+            cc1.Compras.Add(cm1); //Acá el programa se vuelve loco y agrega cada compra en cada uno de los clientes, así que todos los clientes terminan todas las compras (me quiero cortar las pelotas c:)
+            ce2.Compras.Add(cm2);          
+            cc1.Compras.Add(cm3);            
+            cc3.Compras.Add(cm4);            
+            cc3.Compras.Add(cm5);
+            ce1.Compras.Add(cm6);
+
+            clientes.Add(cc1);
+            clientes.Add(cc2);
+            clientes.Add(cc3);
+            clientes.Add(ce1);
+            clientes.Add(ce2);
+            clientes.Add(ce3);
+
             compras.Add(cm1);
             compras.Add(cm2);
             compras.Add(cm3);
             compras.Add(cm4);
             compras.Add(cm5);
             compras.Add(cm6);
-
-            clientes.ElementAt(0).Compras.Add(cm1);
-            clientes.ElementAt(4).Compras.Add(cm2);
-            clientes.ElementAt(0).Compras.Add(cm3);
-            clientes.ElementAt(2).Compras.Add(cm4);
-            clientes.ElementAt(2).Compras.Add(cm5);
-            clientes.ElementAt(3).Compras.Add(cm6);
             #endregion
         }
         #endregion
