@@ -118,7 +118,7 @@ namespace Dominio
 
         public int CompareTo(Compra C)
         {
-            return this.fecha.CompareTo(C.fecha);
+            return -this.fecha.CompareTo(C.fecha);
         }
 
 
