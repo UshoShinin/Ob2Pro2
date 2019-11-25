@@ -78,6 +78,11 @@ namespace Dominio
 
             #region Clientes/Usuarios
             List<Compra> comprasRealizadas = new List<Compra>();
+            List<Compra> comprasRealizadas2 = new List<Compra>();
+            List<Compra> comprasRealizadas3 = new List<Compra>();
+            List<Compra> comprasRealizadas4 = new List<Compra>();
+            List<Compra> comprasRealizadas5 = new List<Compra>();
+            List<Compra> comprasRealizadas6 = new List<Compra>();
             DateTime fechaRegistro1 = new DateTime(2014, 8, 17);
             DateTime fechaRegistro2 = new DateTime(2016, 2, 22);
             DateTime fechaRegistro3 = new DateTime(2018, 12, 27);
@@ -93,11 +98,11 @@ namespace Dominio
             Usuario u6 = new Usuario("Sinaprole", "NoVendemoLeche", Usuario.EnumTipoUsuario.CLIENTE);
 
             ClienteComun cc1 = new ClienteComun(comprasRealizadas, "Alejandro Britos", "AlejandroBritos@gmail.com", fechaRegistro1, Cliente.EnumProcedencia.INTERIOR, "Treinta y Tres 512",u1, 43245438, 98074334);
-            ClienteComun cc2 = new ClienteComun(comprasRealizadas, "Manuel Bertinat", "ManuelBertinat@gmail.com", fechaRegistro2, Cliente.EnumProcedencia.MONTEVIDEO, "Jose L. Terra 2372 apto 4", u2, 50787620, 99346534);
-            ClienteComun cc3 = new ClienteComun(comprasRealizadas, "Guillermo Rodriguez",  "GuillermoRodriguez@gmail.com", fechaRegistro3, Cliente.EnumProcedencia.INTERIOR, "18 de Julio 2204",u3, 52432343, 96578757);
-            ClienteEmpresa ce1 = new ClienteEmpresa(comprasRealizadas, "ADNexus", "NicholasJodon@ADNexus.com.uy", fechaRegistro4, Cliente.EnumProcedencia.MONTEVIDEO, "No tienen sede física lol", u4, "ADNexus Es Mejor SRL", 213546823908, 0.05);
-            ClienteEmpresa ce2 = new ClienteEmpresa(comprasRealizadas, "MacroRough", "FacturaPuertas@MacroRough.com", fechaRegistro5, Cliente.EnumProcedencia.MONTEVIDEO, "El mundo lol", u5, "MacroRough Corporation", 222876233645, 0.10);
-            ClienteEmpresa ce3 = new ClienteEmpresa(comprasRealizadas, "Sinaprole", "Leche@vaca.muu.uy", fechaRegistro6, Cliente.EnumProcedencia.INTERIOR, "Por todo Uruguay", u6, "Cooperativa Sinaprole", 153324541981, 0.8);
+            ClienteComun cc2 = new ClienteComun(comprasRealizadas2, "Manuel Bertinat", "ManuelBertinat@gmail.com", fechaRegistro2, Cliente.EnumProcedencia.MONTEVIDEO, "Jose L. Terra 2372 apto 4", u2, 50787620, 99346534);
+            ClienteComun cc3 = new ClienteComun(comprasRealizadas3, "Guillermo Rodriguez",  "GuillermoRodriguez@gmail.com", fechaRegistro3, Cliente.EnumProcedencia.INTERIOR, "18 de Julio 2204",u3, 52432343, 96578757);
+            ClienteEmpresa ce1 = new ClienteEmpresa(comprasRealizadas4, "ADNexus", "NicholasJodon@ADNexus.com.uy", fechaRegistro4, Cliente.EnumProcedencia.MONTEVIDEO, "No tienen sede física lol", u4, "ADNexus Es Mejor SRL", 213546823908, 0.05);
+            ClienteEmpresa ce2 = new ClienteEmpresa(comprasRealizadas5, "MacroRough", "FacturaPuertas@MacroRough.com", fechaRegistro5, Cliente.EnumProcedencia.MONTEVIDEO, "El mundo lol", u5, "MacroRough Corporation", 222876233645, 0.10);
+            ClienteEmpresa ce3 = new ClienteEmpresa(comprasRealizadas6, "Sinaprole", "Leche@vaca.muu.uy", fechaRegistro6, Cliente.EnumProcedencia.INTERIOR, "Por todo Uruguay", u6, "Cooperativa Sinaprole", 153324541981, 0.8);
 
             u1.Cliente = cc1;
             u2.Cliente = cc2;
@@ -143,7 +148,7 @@ namespace Dominio
             Compra cm5 = new Compra(listaP5, cc3, fechaCompra5, Compra.EnumFormaPago.EFECTIVO, Compra.EnumTipoEntrega.RETIROLOCAL);
             Compra cm6 = new Compra(listaP6, ce1, fechaCompra6, Compra.EnumFormaPago.TARJETA, Compra.EnumTipoEntrega.DOMICILIO);
 
-            cc1.Compras.Add(cm1); //Acá el programa se vuelve loco y agrega cada compra en cada uno de los clientes, así que todos los clientes terminan todas las compras (me quiero cortar las pelotas c:)
+            cc1.Compras.Add(cm1); 
             ce2.Compras.Add(cm2);          
             cc1.Compras.Add(cm3);            
             cc3.Compras.Add(cm4);            
