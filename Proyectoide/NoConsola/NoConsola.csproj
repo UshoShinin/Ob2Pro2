@@ -130,6 +130,9 @@
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\Compra\Index.cshtml" />
+    <Content Include="Views\Compra\ComprarProductos.cshtml" />
+    <Content Include="Views\Producto\UltimosProductosComprados.cshtml" />
+    <Content Include="Views\Producto\MasComprado.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

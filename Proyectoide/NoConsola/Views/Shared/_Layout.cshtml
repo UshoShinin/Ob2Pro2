@@ -30,9 +30,9 @@
                     }
                     else if (Session["usuarioLogueado"] != null && ((Usuario)Session["usuarioLogueado"]).Tipo == Usuario.EnumTipoUsuario.CLIENTE)
                     {
-                        @Html.ActionLink("Comprar Productos", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Ultimos Productos", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Artículo más comprado", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Comprar Productos", "ComprarProductos", "Compra", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Ultimos Productos", "UltimosProductosComprados", "Producto", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Artículo más comprado", "MasComprado", "Producto", new { area = "" }, new { @class = "navbar-brand" })
                     }
                 </ul>
             </div>

@@ -105,6 +105,33 @@ namespace Dominio
         {
             return direccion.Length > 0;
         }
+
+        public List<CantidadProducto> ProductosComprados()
+        {
+            List<CantidadProducto> productosComprados = new List<CantidadProducto>();
+            bool encontrado = false;
+            foreach (Compra cmp in compras)
+            {
+                foreach(CantidadProducto cantPrd in cmp.Productos)
+                {
+                    foreach (CantidadProducto productoComprado in productosComprados)
+                    {
+                        if (cantPrd.Producto.ID == productoComprado.Producto.ID)
+                        {
+                            productoComprado.Cantidad += cantPrd.Cantidad;
+                            encontrado = true;
+                        }
+                    }
+
+                    if (!encontrado)
+                        productosComprados.Add(cantPrd);
+                    else                    
+                        encontrado = false;                    
+                }
+            }
+
+            return productosComprados;
+        } 
         #endregion
 
         public override string ToString()

@@ -1,0 +1,35 @@
+﻿@using Dominio
+
+@{
+    ViewBag.Title = "MasComprado";
+}
+
+<h2>Mas Comprado</h2>
+
+@{
+    Usuario usuActual = (Usuario)ViewBag.usuario;
+    if (usuActual != null)
+    {
+        Cliente clienteActual = usuActual.Cliente;
+        int maximo = 0;
+        Producto productoMasComprado = null;
+        List<CantidadProducto> todasLasCompras = clienteActual.ProductosComprados();
+        if(todasLasCompras.Count() > 0)
+        {
+            foreach (CantidadProducto cantProd in todasLasCompras)
+            {
+                if (cantProd.Cantidad > maximo)
+                {
+                    maximo = cantProd.Cantidad;
+                    productoMasComprado = cantProd.Producto;
+                }
+            }
+            <p>Producto más comprado: @productoMasComprado.Nombre</p>
+            <p>Cantidad: @maximo</p>
+        }
+        else
+        {
+            <p>Usted no ha efectuado ninguna compra</p>
+        }
+    }
+}

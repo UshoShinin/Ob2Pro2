@@ -1,0 +1,50 @@
+﻿@using Dominio;
+
+@{
+    ViewBag.Title = "UltimosProductosComprados";
+}
+
+<h2>Ultimas Compras</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            Usuario usuActual = (Usuario)ViewBag.usuario;
+            if(usuActual != null)
+            {
+                Cliente clienteActual = usuActual.Cliente;
+                int contador = 0;
+                List<Compra> auxCompra = clienteActual.Compras;
+                int aux = clienteActual.Compras.Count - 1;
+                for (int i = aux; i >= 0; i--)
+                {
+                    Compra ultimaCompra = clienteActual.Compras.ElementAt(i); //La ultima compra que no fue recorrida todavía
+                    foreach (CantidadProducto productoIndividual in ultimaCompra.Productos)
+                    {
+                    <tr>
+                        <td>@productoIndividual.Producto.Nombre</td>
+                        <td>@productoIndividual.Cantidad</td>
+                        <td>@ultimaCompra.Fecha.ToShortDateString()</td>
+                    </tr>
+                        contador++;
+                        if (contador == 10)
+                        {
+                            break;
+                        }
+                    }
+                    if (contador == 10)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+    </tbody>
+</table>
+

@@ -99,5 +99,32 @@ namespace NoConsola.Controllers
             Administradora.Instancia.EliminarProducto(id);
             return View("Index");
         }
+
+        public ActionResult UltimosProductosComprados()
+        {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                ViewBag.usuario = Session["usuarioLogueado"];
+                return View();
+            }
+            
+        }
+
+        public ActionResult MasComprado()
+        {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                ViewBag.usuario = Session["usuarioLogueado"];
+                return View();
+            }
+        }
     }
 }

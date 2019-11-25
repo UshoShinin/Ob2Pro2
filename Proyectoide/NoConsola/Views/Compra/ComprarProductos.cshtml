@@ -1,0 +1,31 @@
+﻿@using Dominio;
+@{
+    ViewBag.Title = "ComprarProductos";
+}
+
+<div>
+    <h2>Realizar Compras</h2>
+    <form action="/Compra/AgregarAlCarrito" method="post">
+        <div>
+            <label for="productos">Productos: </label>
+            <select name="productos">
+                @foreach (Producto p in Administradora.Instancia.Productos)
+                {
+                    <option value="@p.ID">@p.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <label for="cantidad">Cantidad</label>
+            <input name="cantidad" type="number" min="1" />
+        </div>
+
+        <input type="submit" value="Agregar al Carrito" />
+    </form>
+</div>
+<hr />
+<div>
+    <h2>Carrito</h2>
+
+</div>
