@@ -58,4 +58,7 @@ table tbody tr:nth-child(odd) {
     float:left;
 }
 
-
+ul li{
+    list-style-type: none;
+    display: inline-block;
+}

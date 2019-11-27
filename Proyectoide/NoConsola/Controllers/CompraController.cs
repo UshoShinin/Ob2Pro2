@@ -32,14 +32,24 @@ namespace NoConsola.Controllers
             return View();
         }
 
-        public ActionResult AgregarAlCarrito(int id, int cantidad)
+        public ActionResult AgregarAlCarrito(int producto, int cantidad)
         {
             if (Session["usuarioLogueado"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
-            Producto p = Administradora.Instancia.BuscarProducto(id);
-            return View();
+            Producto p = Administradora.Instancia.BuscarProducto(producto);
+            List<CantidadProducto> listaCompra = (List<CantidadProducto>)Session["carrito"];
+            foreach (CantidadProducto cantPrd in listaCompra)
+            {
+                if(cantPrd.Producto.ID == p.ID)
+                {
+                    cantPrd.Cantidad += cantidad;
+                    return View("ComprarProductos");
+                }                
+            }
+            listaCompra.Add(new CantidadProducto(cantidad, p));
+            return View("ComprarProductos");
         }
 
         public ActionResult FiltrarCompras(DateTime FI, DateTime FF)

@@ -18,13 +18,35 @@
 
         <div>
             <label for="cantidad">Cantidad</label>
-            <input name="cantidad" type="number" min="1" value="1"/>
+            <input name="cantidad" type="number" min="1" value="1" />
         </div>
 
         <input type="submit" value="Agregar al Carrito" />
     </form>
 </div>
-<hr />
-<div>
-    <h2>Carrito</h2>
-</div>
+
+@{
+    List<CantidadProducto> listaAux = (List<CantidadProducto>)Session["carrito"];
+    if (listaAux.Count != 0)
+    {
+        <hr />
+        <div>
+            <h2>Carrito</h2>
+            <ul>
+                @foreach (CantidadProducto cantPrd in listaAux)
+                {
+                    <li>
+                        <p>Producto:@cantPrd.Producto.Nombre</p>
+                        <form action="/Compra/CarritoModificarCantidad" method="post">
+                            <input type="number" name="cantidad" min="1" value="@cantPrd.Cantidad" />
+                            <input type="submit" value="Modificar" />
+                        </form>
+                        <form action="/Compra/CarritoEliminarProducto" method="post">
+                            <input type="submit" value="X"/>
+                        </form>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+}

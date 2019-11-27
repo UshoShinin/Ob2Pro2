@@ -32,19 +32,13 @@
                     }
                     else if (Session["usuarioLogueado"] != null && ((Usuario)Session["usuarioLogueado"]).Tipo == Usuario.EnumTipoUsuario.CLIENTE)
                     {
-<<<<<<< HEAD
                         @Html.ActionLink("Comprar Productos", "ComprarProductos", "Compra", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Ultimos Productos", "UltimosProductosComprados", "Producto", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Artículo más comprado", "MasComprado", "Producto", new { area = "" }, new { @class = "navbar-brand" })
-=======
-                        @Html.ActionLink("Artículo más comprado", "MasComprado", "Producto", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Ultimos Productos", "UltimosProductosComprados", "Producto", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Comprar Productos", "ComprarProductos", "Compra", new { area = "" }, new { @class = "navbar-brand" })
                     }
                     @if (Session["usuarioLogueado"] != null)
                     {
-                        @Html.ActionLink("LogOut", "LogOut", "Login", new { area = "" }, new { @class = "navbar-brand" })
->>>>>>> master
+                        @Html.ActionLink("Logout", "LogOut", "Login", new { area = "" }, new { @class = "navbar-brand" })
                     }
                 </ul>
             </div>
