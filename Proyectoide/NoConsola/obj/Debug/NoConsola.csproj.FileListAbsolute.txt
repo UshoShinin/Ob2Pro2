@@ -381,3 +381,8 @@ C:\Users\Manuel\Documents\GitKraken Repos\Ob2Pro2\Proyectoide\NoConsola\obj\Debu
 C:\Users\Manuel\Documents\GitKraken Repos\Ob2Pro2\Proyectoide\NoConsola\obj\Debug\NoConsola.csproj.CopyComplete
 C:\Users\Manuel\Documents\GitKraken Repos\Ob2Pro2\Proyectoide\NoConsola\obj\Debug\NoConsola.dll
 C:\Users\Manuel\Documents\GitKraken Repos\Ob2Pro2\Proyectoide\NoConsola\obj\Debug\NoConsola.pdb
+<<<<<<< HEAD
+=======
+D:\Ob2Pro2\Proyectoide\NoConsola\bin\Dominio.dll
+D:\Ob2Pro2\Proyectoide\NoConsola\bin\Dominio.pdb
+>>>>>>> master

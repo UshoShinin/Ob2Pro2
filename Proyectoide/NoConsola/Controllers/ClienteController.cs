@@ -119,7 +119,7 @@ namespace NoConsola.Controllers
             CE.Direccion = Direccion;
             CE.RazonSocial = razonSocial;
             CE.Rut = rut.Value;
-            CE.Descuento = Descuento.Value;
+            CE.Descuento = (Descuento.Value)/100;
             CE.Usuario.Username = username;
             CE.Usuario.Password = password;
             return View("Index");

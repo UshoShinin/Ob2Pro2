@@ -124,7 +124,10 @@ namespace Dominio
                     }
 
                     if (!encontrado)
-                        productosComprados.Add(cantPrd);
+                    {
+                        CantidadProducto nuevo = new CantidadProducto(cantPrd.Cantidad, cantPrd.Producto);
+                        productosComprados.Add(nuevo);
+                    }
                     else                    
                         encontrado = false;                    
                 }

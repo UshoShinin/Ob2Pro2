@@ -2,54 +2,61 @@
 @{
     ViewBag.Title = "Index";
 }
+@model List<Compra>
 
-<form action="/" method="post">
+
+<form action="/Compra/FiltrarCompras" method="post">
     <fieldset>
         <legend>Fecha de inicio y fin</legend>
-        <label for="FI" >Fecha inicial:</label>
+        <label for="FI">Fecha inicial:</label>
         <input type="date" name="FI" max="@DateTime.Now.ToString("yyyy-MM-dd")" required>
         <label for="FF">Fecha final:</label>
         <input type="date" name="FF" max="@DateTime.Now.ToString("yyyy-MM-dd")" required>
         <input type="submit" value="Filtrar">
     </fieldset>
 </form>
-<table>
-    <thead>
-        <tr>
-            <th>
-                Nombre
-            </th>
-            <th>
-                Nombre de Usuario
-            </th>
-            <th>
-                Fecha
-            </th>
-            <th>
-                Cantidad de artículos
-            </th>
-            <th>
-                Subtotal
-            </th>
-            <th>
-                Total
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <!--@@Administradora.Instancia.Compras.Sort(); No tengo ni puta idea de porque eso no quiero andar. Preguntar al bueno del profe c:-->
-        
-        @foreach (Compra C in Administradora.Instancia.Compras)
-        {
+@if (Model != null)
+{
+    if (Model.Count > 0)
+    {
+    <table>
+        <thead>
             <tr>
-                <td>@C.Cliente.Nombre</td>
-                <td>@C.Cliente.Usuario.Username</td>
-                <td>@C.Fecha.ToShortDateString()</td>
-                <td>@C.CantidadProductos()</td>
-                <td>@C.SubTotal()</td>
-                <td>@C.Total()</td>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Nombre de Usuario
+                </th>
+                <th>
+                    Fecha
+                </th>
+                <th>
+                    Cantidad de artículos
+                </th>
+                <th>
+                    Subtotal
+                </th>
+                <th>
+                    Total
+                </th>
             </tr>
-        }
-    </tbody>  
-</table> 
+        </thead>
+        <tbody>
+            <!--@@Administradora.Instancia.Compras.Sort(); No tengo ni puta idea de porque eso no quiero andar. Preguntar al bueno del profe c:-->
 
+            @foreach (Compra C in (List<Compra>)Model)
+            {
+                <tr>
+                    <td>@C.Cliente.Nombre</td>
+                    <td>@C.Cliente.Usuario.Username</td>
+                    <td>@C.Fecha.ToShortDateString()</td>
+                    <td>@C.CantidadProductos()</td>
+                    <td>@C.SubTotal()</td>
+                    <td>@C.Total()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+}

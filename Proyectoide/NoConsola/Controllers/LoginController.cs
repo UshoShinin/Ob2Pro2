@@ -14,6 +14,11 @@ namespace NoConsola.Controllers
         {
             return View();
         }
+        public ActionResult LogOut()
+        {
+            Session["usuarioLogueado"] = null;
+            return View("Index");
+        }
         public ActionResult PerformLogin(string username, string password)
         {
             Usuario usu = Administradora.Instancia.BuscarUsuario(username, password);

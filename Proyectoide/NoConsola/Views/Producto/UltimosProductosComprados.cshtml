@@ -15,7 +15,7 @@
     </thead>
     <tbody>
         @{
-            Usuario usuActual = (Usuario)ViewBag.usuario;
+            Usuario usuActual = (Usuario)Session["usuarioLogueado"];
             if(usuActual != null)
             {
                 Cliente clienteActual = usuActual.Cliente;

@@ -108,7 +108,6 @@ namespace NoConsola.Controllers
             }
             else
             {
-                ViewBag.usuario = Session["usuarioLogueado"];
                 return View();
             }
             
@@ -121,8 +120,7 @@ namespace NoConsola.Controllers
                 return RedirectToAction("Index", "Login");
             }
             else
-            {
-                ViewBag.usuario = Session["usuarioLogueado"];
+            {             
                 return View();
             }
         }
