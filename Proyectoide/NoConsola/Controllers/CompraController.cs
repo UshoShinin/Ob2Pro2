@@ -28,6 +28,7 @@ namespace NoConsola.Controllers
             if (Session["carrito"] == null)
             {
                 Session["carrito"] = new List<CantidadProducto>();
+                Session["precioCarrito"] = 0.0;
             }            
             return View();
         }
@@ -49,6 +50,79 @@ namespace NoConsola.Controllers
                 }                
             }
             listaCompra.Add(new CantidadProducto(cantidad, p));
+            return View("ComprarProductos");
+        }
+
+        public ActionResult CarritoModificarCantidad(int cantidad, int id)
+        {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            List<CantidadProducto> listaCompra = (List<CantidadProducto>)Session["carrito"];
+            foreach (CantidadProducto cantPrd in listaCompra)
+            {
+                if (cantPrd.Producto.ID == id)
+                {
+                    cantPrd.Cantidad = cantidad;
+                    return View("ComprarProductos");
+                }
+            }
+            return View("ComprarProductos");
+        }
+
+        public ActionResult CarritoEliminarProducto(int id)
+        {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            List<CantidadProducto> listaCompra = (List<CantidadProducto>)Session["carrito"];
+            foreach (CantidadProducto cantPrd in listaCompra)
+            {
+                if (cantPrd.Producto.ID == id)
+                {
+                    listaCompra.Remove(cantPrd);
+                    return View("ComprarProductos");
+                }
+            }
+            return View("ComprarProductos");
+        }
+
+        public ActionResult FinalizarCompra()
+        {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            return View();
+        }
+
+        public ActionResult AgregarCompra(int formaDePago, int tipoEntrega)
+        {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            Compra nuevaC = (Compra)Session["compra"];
+
+            if (formaDePago == 1)
+                nuevaC.FormaDePago = Compra.EnumFormaPago.TARJETA;
+            else
+                nuevaC.FormaDePago = Compra.EnumFormaPago.EFECTIVO;
+
+            if (tipoEntrega == 1)
+                nuevaC.TipoEntrega = Compra.EnumTipoEntrega.RETIROLOCAL;
+            else
+                nuevaC.TipoEntrega = Compra.EnumTipoEntrega.DOMICILIO;
+
+            nuevaC.Fecha = DateTime.Now;
+            Usuario usuLogueado = (Usuario)Session["usuarioLogueado"];
+            Compra c = new Compra(nuevaC.Productos, nuevaC.Cliente, nuevaC.Fecha, nuevaC.FormaDePago, nuevaC.TipoEntrega);
+            usuLogueado.Cliente.Compras.Add(c);
+            List<CantidadProducto> listaAux = (List<CantidadProducto>)Session["carrito"];
+            listaAux.RemoveRange(0, listaAux.Count);            
+            Session["compra"] = null;
             return View("ComprarProductos");
         }
 

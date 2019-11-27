@@ -57,8 +57,3 @@ table tbody tr:nth-child(odd) {
 #Izquierda {
     float:left;
 }
-
-ul li{
-    list-style-type: none;
-    display: inline-block;
-}

@@ -91,7 +91,7 @@ namespace Dominio
             DateTime fechaRegistro6 = new DateTime(2013, 5, 30);
 
             Usuario u1 = new Usuario("ElAlejaBurritos", "BurritoAlbino", Usuario.EnumTipoUsuario.ADMINISTRADOR);
-            Usuario u2 = new Usuario("M4Ckak", "EstaNoEsUnaContraseñaGraciosa", Usuario.EnumTipoUsuario.ADMINISTRADOR);
+            Usuario u2 = new Usuario("M4Ckrar", "EstaNoEsUnaContraseñaGraciosa", Usuario.EnumTipoUsuario.ADMINISTRADOR);
             Usuario u3 = new Usuario("Guille1806", "FuriKuri", Usuario.EnumTipoUsuario.CLIENTE);
             Usuario u4 = new Usuario("ADNexus", "JodonJodon", Usuario.EnumTipoUsuario.CLIENTE);
             Usuario u5 = new Usuario("MacroRough", "$250", Usuario.EnumTipoUsuario.CLIENTE);

@@ -134,6 +134,7 @@
     <Content Include="Views\Compra\ComprarProductos.cshtml" />
     <Content Include="Views\Producto\UltimosProductosComprados.cshtml" />
     <Content Include="Views\Producto\MasComprado.cshtml" />
+    <Content Include="Views\Compra\FinalizarCompra.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

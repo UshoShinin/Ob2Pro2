@@ -1,0 +1,36 @@
+﻿@using Dominio;
+
+@{
+    ViewBag.Title = "FinalizarCompra";
+}
+
+<h2>Finalización de Compra</h2>
+@{ 
+    Usuario usuLog = (Usuario)Session["usuarioLogueado"];
+    List<CantidadProducto> listaCompra = new List<CantidadProducto>();
+    foreach (CantidadProducto cantPrd in (List<CantidadProducto>)Session["carrito"])
+    {
+        CantidadProducto productoAux = new CantidadProducto(cantPrd.Cantidad, cantPrd.Producto);
+        listaCompra.Add(productoAux);
+    }  
+    Compra nuevaCompra = new Compra(listaCompra, usuLog.Cliente, new DateTime(1, 1, 1), Compra.EnumFormaPago.EFECTIVO, Compra.EnumTipoEntrega.DOMICILIO);
+}
+<p>Subtotal: @nuevaCompra.SubTotal()</p>
+<form action="/Compra/AgregarCompra" method="post">
+    <div>
+        <label for="formaDePago">Forma de Pago: </label>
+        <select name="formaDePago">
+            <option value="1">Tarjeta</option>
+            <option value="2">Efectivo</option>
+        </select>
+    </div>
+    <div>
+        <label for="tipoEntrega">Entrega a Domicilio: </label>
+        <select name="tipoEntrega">
+        <option value="1">No</option>
+        <option value="2">Sí</option>
+        </select>
+    </div>
+    @{Session["compra"] = nuevaCompra;}
+    <input type="submit" value="Confirmar Compra" />
+</form>

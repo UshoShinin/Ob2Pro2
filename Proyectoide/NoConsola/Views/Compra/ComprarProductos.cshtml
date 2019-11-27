@@ -17,7 +17,7 @@
         </div>
 
         <div>
-            <label for="cantidad">Cantidad</label>
+            <label for="cantidad">Cantidad: </label>
             <input name="cantidad" type="number" min="1" value="1" />
         </div>
 
@@ -32,21 +32,38 @@
         <hr />
         <div>
             <h2>Carrito</h2>
-            <ul>
+            <ul class="list-unstyled">
                 @foreach (CantidadProducto cantPrd in listaAux)
                 {
-                    <li>
-                        <p>Producto:@cantPrd.Producto.Nombre</p>
-                        <form action="/Compra/CarritoModificarCantidad" method="post">
-                            <input type="number" name="cantidad" min="1" value="@cantPrd.Cantidad" />
-                            <input type="submit" value="Modificar" />
-                        </form>
-                        <form action="/Compra/CarritoEliminarProducto" method="post">
-                            <input type="submit" value="X"/>
-                        </form>
-                    </li>
+                <li>
+                    <p>Producto: @cantPrd.Producto.Nombre</p>
+                    @{
+                        double precioProducto = 0.0;
+                        if (cantPrd.Producto.Exclusivo && cantPrd.Cantidad >= 2)
+                        {
+                            precioProducto = cantPrd.Producto.Precio * (cantPrd.Cantidad - 1);
+                        }
+                        else
+                        {
+                            precioProducto = cantPrd.Producto.Precio * cantPrd.Cantidad;
+                        }
+                    }
+                    <p>Precio: @precioProducto</p>
+                    <form action="/Compra/CarritoModificarCantidad" method="post">
+                        <input type="number" name="cantidad" min="1" value="@cantPrd.Cantidad" />
+                        <input type="number" name="id" value="@cantPrd.Producto.ID" hidden="hidden" />
+                        <input type="submit" value="Modificar" />
+                    </form>
+                    <form action="/Compra/CarritoEliminarProducto" method="post">
+                        <input type="number" name="id" value="@cantPrd.Producto.ID" hidden="hidden" />
+                        <input type="submit" value="X" />
+                    </form>
+                </li>
                 }
             </ul>
+            <form action="/Compra/FinalizarCompra" method="post">
+                <input type="submit" value="Finalizar Compra"/>
+            </form>
         </div>
     }
 }
