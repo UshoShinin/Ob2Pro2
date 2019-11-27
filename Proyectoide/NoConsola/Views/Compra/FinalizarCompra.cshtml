@@ -5,18 +5,18 @@
 }
 
 <h2>Finalización de Compra</h2>
-@{ 
+@{
     Usuario usuLog = (Usuario)Session["usuarioLogueado"];
     List<CantidadProducto> listaCompra = new List<CantidadProducto>();
     foreach (CantidadProducto cantPrd in (List<CantidadProducto>)Session["carrito"])
     {
         CantidadProducto productoAux = new CantidadProducto(cantPrd.Cantidad, cantPrd.Producto);
         listaCompra.Add(productoAux);
-    }  
+    }    
     Compra nuevaCompra = new Compra(listaCompra, usuLog.Cliente, new DateTime(1, 1, 1), Compra.EnumFormaPago.EFECTIVO, Compra.EnumTipoEntrega.DOMICILIO);
 }
 <p>Subtotal: @nuevaCompra.SubTotal()</p>
-<form action="/Compra/AgregarCompra" method="post">
+<form action="/Compra/CalcularTotal" method="post">
     <div>
         <label for="formaDePago">Forma de Pago: </label>
         <select name="formaDePago">
@@ -27,10 +27,23 @@
     <div>
         <label for="tipoEntrega">Entrega a Domicilio: </label>
         <select name="tipoEntrega">
-        <option value="1">No</option>
-        <option value="2">Sí</option>
+            <option value="1">No</option>
+            <option value="2">Sí</option>
         </select>
     </div>
-    @{Session["compra"] = nuevaCompra;}
-    <input type="submit" value="Confirmar Compra" />
+    @{
+        if (ViewBag.calcularTotal == null)
+        {
+            Session["compra"] = nuevaCompra;
+        }
+    }
+    <input type="submit" value="Calcular Total" />
 </form>
+@if (ViewBag.calcularTotal != null)
+{
+    Compra compraFinal = (Compra)Session["compra"];
+    <p>Total: @compraFinal.Total()</p>
+    <form action="/Compra/AgregarCompra" method="post">
+        <input type="submit" value="Finalizar Compra" />
+    </form>
+}

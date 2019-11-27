@@ -79,7 +79,7 @@ namespace Dominio
             {
                 if (P.Producto.Exclusivo && P.Cantidad >= 2)
                 {
-                    subtotal += P.Producto.Precio * (P.Cantidad - 1);
+                    subtotal += P.Producto.Precio * ((P.Cantidad / 2) + P.Cantidad % 2);
                 } else
                 {
                     subtotal += P.Producto.Precio * P.Cantidad;

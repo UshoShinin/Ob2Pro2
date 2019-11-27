@@ -36,28 +36,34 @@
                 @foreach (CantidadProducto cantPrd in listaAux)
                 {
                 <li>
-                    <p>Producto: @cantPrd.Producto.Nombre</p>
-                    @{
-                        double precioProducto = 0.0;
-                        if (cantPrd.Producto.Exclusivo && cantPrd.Cantidad >= 2)
-                        {
-                            precioProducto = cantPrd.Producto.Precio * (cantPrd.Cantidad - 1);
+                    <ul class="list-inline">
+                        <li>Producto: @cantPrd.Producto.Nombre</li>
+                        @{
+                            double precioProducto = 0.0;
+                            if (cantPrd.Producto.Exclusivo && cantPrd.Cantidad >= 2)
+                            {
+                                precioProducto = cantPrd.Producto.Precio * ((cantPrd.Cantidad / 2) + cantPrd.Cantidad % 2);
+                            }
+                            else
+                            {
+                                precioProducto = cantPrd.Producto.Precio * cantPrd.Cantidad;
+                            }
                         }
-                        else
-                        {
-                            precioProducto = cantPrd.Producto.Precio * cantPrd.Cantidad;
-                        }
-                    }
-                    <p>Precio: @precioProducto</p>
-                    <form action="/Compra/CarritoModificarCantidad" method="post">
-                        <input type="number" name="cantidad" min="1" value="@cantPrd.Cantidad" />
-                        <input type="number" name="id" value="@cantPrd.Producto.ID" hidden="hidden" />
-                        <input type="submit" value="Modificar" />
-                    </form>
-                    <form action="/Compra/CarritoEliminarProducto" method="post">
-                        <input type="number" name="id" value="@cantPrd.Producto.ID" hidden="hidden" />
-                        <input type="submit" value="X" />
-                    </form>
+                        <li>Precio: @precioProducto</li>
+                        <li>
+                            <form action="/Compra/CarritoModificarCantidad" method="post">
+                                <input type="number" name="cantidad" min="1" value="@cantPrd.Cantidad" />
+                                <input type="number" name="id" value="@cantPrd.Producto.ID" hidden="hidden" />
+                                <input type="submit" value="Modificar" />
+                            </form>
+                        </li>
+                        <li>
+                            <form action="/Compra/CarritoEliminarProducto" method="post">
+                                <input type="number" name="id" value="@cantPrd.Producto.ID" hidden="hidden" />
+                                <input type="submit" value="X" />
+                            </form>
+                        </li>
+                    </ul>                                        
                 </li>
                 }
             </ul>

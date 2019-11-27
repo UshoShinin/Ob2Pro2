@@ -98,12 +98,14 @@ namespace NoConsola.Controllers
             return View();
         }
 
-        public ActionResult AgregarCompra(int formaDePago, int tipoEntrega)
+        public ActionResult CalcularTotal(int formaDePago, int tipoEntrega)
         {
             if (Session["usuarioLogueado"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
+
+            ViewBag.calcularTotal = true;
             Compra nuevaC = (Compra)Session["compra"];
 
             if (formaDePago == 1)
@@ -115,7 +117,17 @@ namespace NoConsola.Controllers
                 nuevaC.TipoEntrega = Compra.EnumTipoEntrega.RETIROLOCAL;
             else
                 nuevaC.TipoEntrega = Compra.EnumTipoEntrega.DOMICILIO;
+            return View("FinalizarCompra");
+        }
 
+        public ActionResult AgregarCompra()
+        {
+            if (Session["usuarioLogueado"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            Compra nuevaC = (Compra)Session["compra"];        
             nuevaC.Fecha = DateTime.Now;
             Usuario usuLogueado = (Usuario)Session["usuarioLogueado"];
             Compra c = new Compra(nuevaC.Productos, nuevaC.Cliente, nuevaC.Fecha, nuevaC.FormaDePago, nuevaC.TipoEntrega);
